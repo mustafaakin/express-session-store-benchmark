@@ -1,0 +1,9 @@
+{
+  "name": "Session Stores Speed Test",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "*",
+    "connect-mongo": "*",
+    "connect-redis": "*"
+  }
+}
