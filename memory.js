@@ -1,8 +1,10 @@
 var express = require("express");
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var app = express();
 
-app.use( express.cookieParser());
-app.use( express.session( {secret: "hello"} ));
+app.use(cookieParser());
+app.use(session( {secret: "hello", resave: true, saveUninitialized: true} ));
 
 app.get("/", function(req,res){
 	if ( req.session && req.session.no){

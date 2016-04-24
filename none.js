@@ -1,9 +1,9 @@
 var express = require("express");
+var cookieParser = require('cookie-parser');
+
 var app = express();
 
-app.configure(function(){
-	app.use(express.cookieParser());
-});
+app.use(cookieParser());
 
 app.get("/", function(req,res){
 	res.send("No: 1");
