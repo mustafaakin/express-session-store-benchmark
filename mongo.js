@@ -1,13 +1,17 @@
 var express = require("express");
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var app = express();
-var MongoStore = require('connect-mongo')(express);
+var MongoStore = require('connect-mongo')(session);
 
-app.use(express.cookieParser());
-app.use(express.session({
+app.use(cookieParser());
+app.use(session({
 	store: new MongoStore({
 		url: 'mongodb://localhost/test-session'
 	}),
-	secret: 'hello'
+	secret: 'hello',
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.get("/", function(req,res){

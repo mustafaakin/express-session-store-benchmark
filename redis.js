@@ -1,15 +1,19 @@
 var express = require("express");
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var app = express();
-var RedisStore = require('connect-redis')(express);
+var RedisStore = require('connect-redis')(session);
 
-app.use(express.cookieParser());
-app.use(express.session({
+app.use(cookieParser());
+app.use(session({
 	store: new RedisStore({
 		host: 'localhost',
 		port: 6379,
 		db: 2,
 		}),
-	secret: 'hello'
+	secret: 'hello',
+  resave: true,
+  saveUninitialized: true
 }));
 
 app.get("/", function(req,res){
